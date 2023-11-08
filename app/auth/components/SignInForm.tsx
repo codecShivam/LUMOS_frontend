@@ -2,22 +2,20 @@
 import React, { useState, FormEvent, Dispatch, SetStateAction } from 'react';
 
 interface SignInFormProps {
-    libId: string;
-    password: string;
-    setLibId: Dispatch<SetStateAction<string>>;
-    setPassword: Dispatch<SetStateAction<string>>;
     onFormSubmit: (libId: string, password: string) => void;
 }
 
-const SignInForm: React.FC<SignInFormProps> = ({ libId, password, setLibId, setPassword, onFormSubmit }) => {
+const SignInForm: React.FC<SignInFormProps> = ({ onFormSubmit }) => {
+    const [libId, setLibId] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+  
     const [showPassword, setShowPassword] = useState<boolean>(false);
-
+  
     const handleSubmit = (event: FormEvent) => {
-        event.preventDefault();
-        onFormSubmit(libId, password);
+      event.preventDefault();
+      onFormSubmit(libId, password);
     };
-
-
+  
     return (
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <input type="hidden" name="remember" value="true" />

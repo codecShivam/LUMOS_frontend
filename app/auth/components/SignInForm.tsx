@@ -1,20 +1,20 @@
-'use client';
 import React, { useState, FormEvent, Dispatch, SetStateAction } from 'react';
+
 
 interface SignInFormProps {
     onFormSubmit: (libId: string, password: string) => void;
-}
-
-const SignInForm: React.FC<SignInFormProps> = ({ onFormSubmit }) => {
+  }
+  
+  const SignInForm: React.FC<SignInFormProps> = ({ onFormSubmit }) => {
     const [libId, setLibId] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-  
     const [showPassword, setShowPassword] = useState<boolean>(false);
   
     const handleSubmit = (event: FormEvent) => {
       event.preventDefault();
       onFormSubmit(libId, password);
     };
+  
   
     return (
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>

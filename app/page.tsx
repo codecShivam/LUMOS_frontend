@@ -1,4 +1,7 @@
+'use client'
 import Link from 'next/link';
+import Image from 'next/image';
+import dotImage from '@/public/images/dot.png'
 
 export default function Dashboard() {
   return (
@@ -82,25 +85,38 @@ export default function Dashboard() {
           <div className="bg-gray-100 w-full p-4">
             <h2 className="text-lg font-bold mb-4 text-gray-700">Subjects</h2>
             <ul>
-              <li className="mb-2">
-                <a href="#" className="text-blue-500 hover:underline">
-                  Subject 1
+              <li className="mb-2 relative">
+                <Image src={dotImage} alt="dot" width={10} height={10} className="absolute left-0 top-1/2 transform -translate-y-1/2" />
+                <a href="#" className="text-gray-500 font-medium text-xl hover:underline pl-4">
+                  SENSOR & INSTRUMENTATION (BOE-305)
                 </a>
               </li>
-              <li className="mb-2">
-                <a href="#" className="text-blue-500 hover:underline">
-                  Subject 2
+              <li className="mb-2 relative">
+                <Image src={dotImage} alt="dot" width={10} height={10} className="absolute left-0 top-1/2 transform -translate-y-1/2" />
+                <a href="#" className="text-gray-500 font-medium text-xl hover:underline pl-4">
+                  UNIVERSAL HUMAN VALUES (BVE-301)
                 </a>
               </li>
-              <li className="mb-2">
-                <a href="#" className="text-blue-500 hover:underline">
-                  Subject 3
+              <li className="mb-2 relative">
+                <Image src={dotImage} alt="dot" width={10} height={10} className="absolute left-0 top-1/2 transform -translate-y-1/2" />
+                <a href="#" className="text-gray-500 font-medium text-xl hover:underline pl-4">
+                  DISCRETE STRUCTURES & THEORY OF LOGIC (BCS-303)
+                </a>
+              </li>
+              <li className="mb-2 relative">
+                <Image src={dotImage} alt="dot" width={10} height={10} className="absolute left-0 top-1/2 transform -translate-y-1/2" />
+                <a href="#" className="text-gray-500 font-medium text-xl hover:underline pl-4">
+                  DATA STRUCTURE (BCS-301)
+                </a>
+              </li>
+              <li className="mb-2 relative">
+                <Image src={dotImage} alt="dot" width={10} height={10} className="absolute left-0 top-1/2 transform -translate-y-1/2" />
+                <a href="#" className="text-gray-500 font-medium text-xl hover:underline pl-4">
+                  COMPUTER ORGANIZATION AND ARCHITECTURE (BCS-302)
                 </a>
               </li>
             </ul>
           </div>
-
-          
         </div>
       </div>
     </div>

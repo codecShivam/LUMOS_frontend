@@ -24,7 +24,7 @@ const SignUpPage: React.FC = () => {
   const [formData, setFormData] = useState(initialFormData);
 
   const handleSignUp = () => {
-    // Handle sign-up logic here with the formData
+    // Handle sign-up logic here 
   };
 
   const handleFormChange = (key: string, value: string) => {

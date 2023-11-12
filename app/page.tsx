@@ -1,13 +1,39 @@
-'use client'
 import Link from 'next/link';
 import Image from 'next/image';
-import dotImage from '@/public/images/dot.png'
+
+const subjects = [
+  {
+    title: 'SENSOR & INSTRUMENTATION (BOE-305)',
+    description: 'This subject covers the basics of sensors and instrumentation used in various fields of engineering.',
+    image: '/images/sensor.jpg',
+  },
+  {
+    title: 'UNIVERSAL HUMAN VALUES (BVE-301)',
+    description: 'This subject covers the importance of universal human values in personal and professional life.',
+    image: '/images/values.jpg',
+  },
+  {
+    title: 'DISCRETE STRUCTURES & THEORY OF LOGIC (BCS-303)',
+    description: 'This subject covers the basics of discrete structures and the theory of logic used in computer science.',
+    image: '/images/discrete.jpg',
+  },
+  {
+    title: 'DATA STRUCTURE (BCS-301)',
+    description: 'This subject covers the basics of data structures used in computer science.',
+    image: '/images/data.jpg',
+  },
+  {
+    title: 'COMPUTER ORGANIZATION AND ARCHITECTURE (BCS-302)',
+    description: 'This subject covers the basics of computer organization and architecture used in computer science.',
+    image: '/images/architecture.jpg',
+  },
+];
 
 export default function Dashboard() {
   return (
-    <div className="flex flex-row h-screen">
+    <div className="flex flex-col md:flex-row  ">
       {/* Left Sidebar */}
-      <div className="bg-gray-200 w-1/4 p-4">
+      <div className="bg-gray-200 w-full md:w-1/4 p-4">
         <h2 className="text-lg font-bold mb-4 text-gray-700">Tools</h2>
         <ul className="mb-4">
           <li className="mb-2">
@@ -47,7 +73,7 @@ export default function Dashboard() {
       </div>
 
       {/* Main Content */}
-      <div className="flex flex-col w-3/4">
+      <div className="flex flex-col w-full md:w-3/4">
         <nav className="bg-blue-500 p-4">
           <div className="flex justify-between">
             <div className="flex items-center text-white">
@@ -80,42 +106,35 @@ export default function Dashboard() {
           </div>
         </nav>
 
-        <div className="flex flex-row flex-1">
+        <div className="flex flex-col md:flex-row flex-1">
           {/* Subject List */}
-          <div className="bg-gray-100 w-full p-4">
+          <div className="bg-gray-100 w-full  p-4">
             <h2 className="text-lg font-bold mb-4 text-gray-700">Subjects</h2>
-            <ul>
-              <li className="mb-2 relative">
-                <Image src={dotImage} alt="dot" width={10} height={10} className="absolute left-0 top-1/2 transform -translate-y-1/2" />
-                <a href="#" className="text-gray-500 font-medium text-xl hover:underline pl-4">
-                  SENSOR & INSTRUMENTATION (BOE-305)
-                </a>
-              </li>
-              <li className="mb-2 relative">
-                <Image src={dotImage} alt="dot" width={10} height={10} className="absolute left-0 top-1/2 transform -translate-y-1/2" />
-                <a href="#" className="text-gray-500 font-medium text-xl hover:underline pl-4">
-                  UNIVERSAL HUMAN VALUES (BVE-301)
-                </a>
-              </li>
-              <li className="mb-2 relative">
-                <Image src={dotImage} alt="dot" width={10} height={10} className="absolute left-0 top-1/2 transform -translate-y-1/2" />
-                <a href="#" className="text-gray-500 font-medium text-xl hover:underline pl-4">
-                  DISCRETE STRUCTURES & THEORY OF LOGIC (BCS-303)
-                </a>
-              </li>
-              <li className="mb-2 relative">
-                <Image src={dotImage} alt="dot" width={10} height={10} className="absolute left-0 top-1/2 transform -translate-y-1/2" />
-                <a href="#" className="text-gray-500 font-medium text-xl hover:underline pl-4">
-                  DATA STRUCTURE (BCS-301)
-                </a>
-              </li>
-              <li className="mb-2 relative">
-                <Image src={dotImage} alt="dot" width={10} height={10} className="absolute left-0 top-1/2 transform -translate-y-1/2" />
-                <a href="#" className="text-gray-500 font-medium text-xl hover:underline pl-4">
-                  COMPUTER ORGANIZATION AND ARCHITECTURE (BCS-302)
-                </a>
-              </li>
-            </ul>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {subjects.map((subject) => (
+                <div
+                  key={subject.title}
+                  className="bg-white rounded-md shadow-md p-4 flex flex-col justify-between"
+                >
+                  <div>
+                    <Image
+                      src={subject.image}
+                      alt={subject.title}
+                      width={300}
+                      height={200}
+                      className="mb-4"
+                    />
+                    <h3 className="text-gray-500 font-medium text-xl mb-2">
+                      {subject.title}
+                    </h3>
+                    <p className="text-gray-500 mb-4">{subject.description}</p>
+                  </div>
+                  <button className="bg-blue-500 text-white py-2 px-4 rounded-md w-full">
+                    View Subject
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

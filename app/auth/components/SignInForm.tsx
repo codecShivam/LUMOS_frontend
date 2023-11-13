@@ -2,17 +2,17 @@ import React, { useState, FormEvent, Dispatch, SetStateAction } from 'react';
 
 
 interface SignInFormProps {
-    onFormSubmit: (libId: string, password: string) => void;
+    onFormSubmit: (emailAddress: string, password: string) => void;
   }
   
   const SignInForm: React.FC<SignInFormProps> = ({ onFormSubmit }) => {
-    const [libId, setLibId] = useState<string>('');
+    const [emailAddress, setemailAddress] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [showPassword, setShowPassword] = useState<boolean>(false);
   
     const handleSubmit = (event: FormEvent) => {
       event.preventDefault();
-      onFormSubmit(libId, password);
+      onFormSubmit(emailAddress, password);
     };
   
   
@@ -21,19 +21,19 @@ interface SignInFormProps {
             <input type="hidden" name="remember" value="true" />
             <div className="rounded-md shadow-sm -space-y-px">
                 <div>
-                    <label htmlFor="library-id" className="sr-only">
-                        Library ID
+                    <label htmlFor="email-address" className="sr-only">
+                        Email address
                     </label>
                     <input
-                        id="library-id"
-                        name="libId"
-                        type="libId"
-                        autoComplete="libId"
+                        id="email-address"
+                        name="emailAddress"
+                        type="emailAddress"
+                        autoComplete="emailAddress"
                         required
-                        value={libId}
-                        onChange={(event) => setLibId(event.target.value)}
+                        value={emailAddress}
+                        onChange={(event) => setemailAddress(event.target.value)}
                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                        placeholder="Library ID"
+                        placeholder="Email address"
                     />
                 </div>
                 <div>

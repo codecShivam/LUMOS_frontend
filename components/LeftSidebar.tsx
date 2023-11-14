@@ -1,5 +1,5 @@
 export const LeftSidebar = () => (
-    <div className=" bg-gray-200 sm:w-1/4 p-4 h-screen fixed ">
+    <div className=" bg-gray-200 sm:w-1/4 p-4 h-screen sm:fixed ">
         <h2 className="text-lg font-bold mb-4 text-gray-700">Tools</h2>
         <ul className="mb-4">
             <li className="mb-2">

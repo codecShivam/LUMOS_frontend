@@ -18,7 +18,8 @@ export const SubjectList = () => (
                                 alt={subject.title}
                                 width={300}
                                 height={200}
-                                className="mb-4"
+                                className="mb-4 w-full rounded-md "
+                                objectFit="cover"
                             />
                             <h3 className="text-gray-500 font-medium text-xl mb-2">
                                 {subject.title}
@@ -26,7 +27,7 @@ export const SubjectList = () => (
                             <p className="text-gray-500 mb-4">{subject.description}</p>
                         </div>
                         <button className="bg-blue-500 text-white py-2 px-4 rounded-md w-full">
-                            View Subject
+                            Ask Query
                         </button>
                     </div>
                 ))}

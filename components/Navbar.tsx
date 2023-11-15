@@ -21,12 +21,12 @@ export const Navbar = () => (
         <span className="font-bold text-3xl">Lumos</span>
       </div>
       <div className="flex items-center">
-        <Link href="/auth/SignIn">
+        <Link href="/SignIn">
           <p className="text-white mr-4 hover:text-gray-300 cursor-pointer transition duration-300 ease-in-out">
             Sign In
           </p>
         </Link>
-        <Link href="/auth/SignUp">
+        <Link href="/SignUp">
           <p className="text-white bg-teal-500 px-4 py-2 rounded-md hover:bg-blue-600 cursor-pointer transition duration-300 ease-in-out">
             Sign Up
           </p>

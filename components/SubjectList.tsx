@@ -1,6 +1,5 @@
 import Image from "next/image"
 import { subjects } from "@/data/subjects"
-import { redirect } from "next/dist/server/api-utils"
 import Link from "next/link"
 
 export const SubjectList = () => (

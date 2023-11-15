@@ -3,7 +3,7 @@ import Link from "next/link";
 export const Navbar = () => (
   <nav className="bg-gradient-to-r from-blue-400 via-teal-500 to-blue-500 p-4">
     <div className="flex justify-between items-center">
-      <div className="flex items-center text-white">
+      <Link href={'/'} className="flex items-center text-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-10 w-10 mr-2"
@@ -19,7 +19,7 @@ export const Navbar = () => (
           />
         </svg>
         <span className="font-bold text-3xl">Lumos</span>
-      </div>
+      </Link>
       <div className="flex items-center">
         <Link href="/SignIn">
           <p className="text-white mr-4 hover:text-gray-300 cursor-pointer transition duration-300 ease-in-out">

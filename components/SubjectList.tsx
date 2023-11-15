@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { subjects } from "@/data/subjects"
 import { redirect } from "next/dist/server/api-utils"
+import Link from "next/link"
 
 export const SubjectList = () => (
 
@@ -28,9 +29,9 @@ export const SubjectList = () => (
                             </h3>
                             <p className="text-gray-500 mb-4">{subject.description}</p>
                         </div>
-                        <a href="/chat" className="bg-blue-500 text-center text-white py-2 px-4 rounded-md w-full">
+                        <Link href="/chat" className="bg-blue-500 text-center text-white py-2 px-4 rounded-md w-full">
                             Ask Query
-                        </a>
+                        </Link>
                     </div>
                 ))}
             </div>

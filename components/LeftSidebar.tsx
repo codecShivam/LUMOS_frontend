@@ -34,7 +34,6 @@ export const LeftSidebar = () => {
     };
 
     const handleFileOpen = (fileUrl: string) => {
-        // Open the file using window.open
         window.open(fileUrl);
     };
 
@@ -44,8 +43,21 @@ export const LeftSidebar = () => {
             <div className="mb-4">
                 <label
                     htmlFor="file-input"
-                    className="bg-blue-500 text-white py-2 px-4 rounded-md w-full cursor-pointer"
+                    className="bg-gradient-to-r from-blue-400 to-blue-600 text-white py-3 px-6 rounded-full w-full cursor-pointer shadow-lg hover:from-blue-500 hover:to-blue-700 hover:text-white transition duration-300 flex items-center justify-center"
                 >
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6 mr-2 text-white"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                    >
+                        <path
+                            fillRule="evenodd"
+                            d="M10 3a1 1 0 00-1 1v4H5a1 1 0 100 2h4v4a1 1 0 102 0v-4h4a1 1 0 100-2h-4V4a1 1 0 00-1-1z"
+                            clipRule="evenodd"
+                        />
+                    </svg>
                     Upload File
                 </label>
                 <input
@@ -56,8 +68,9 @@ export const LeftSidebar = () => {
                     onChange={handleFileSelect}
                 />
             </div>
+
             <div
-                className="border-2 border-dashed border-gray-400 rounded-md p-8 text-center"
+                className="border border-gray-400 rounded-md p-8 text-center bg-white shadow-md card"
                 onDragOver={handleDragOver}
                 onDrop={handleDrop}
             >
@@ -75,8 +88,8 @@ export const LeftSidebar = () => {
                                 clipRule="evenodd"
                             />
                         </svg>
-                        <p className="text-gray-500">Drag and drop files here</p>
-                        <p className="text-gray-500">or</p>
+                        <p className="text-gray-500 mb-2">Drag and drop files here</p>
+                        <p className="text-gray-500 text-xs mb-1">or</p>
                         <label
                             htmlFor="file-input"
                             className="text-blue-500 hover:underline cursor-pointer"
@@ -85,16 +98,15 @@ export const LeftSidebar = () => {
                         </label>
                     </div>
                 ) : (
-                    <ul>
+                    <ul className="grid gap-4">
                         {selectedFiles.map((file, index) => (
-                            <li key={index} className="mb-2">
-                                <a
-                                    href="#"
-                                    className="text-blue-500 hover:underline"
+                            <li key={index} className="flex justify-between items-center bg-blue-50 rounded-md p-3">
+                                <button
+                                    className="text-blue-500 hover:underline font-bold truncate"
                                     onClick={() => handleFileOpen(URL.createObjectURL(file))}
                                 >
                                     {file.name}
-                                </a>
+                                </button>
                                 <button
                                     className="ml-2 text-red-500 hover:underline"
                                     onClick={() => handleRemoveFile(file)}
@@ -106,16 +118,22 @@ export const LeftSidebar = () => {
                     </ul>
                 )}
             </div>
-            <h2 className="text-lg font-bold mb-4 text-gray-700">Recent Files</h2>
+
+
+            <h2 className="text-lg font-bold mb-4 mt-5 text-gray-700">Recent Files</h2>
             <ul>
                 {recentFiles.map((file, index) => (
                     <li key={index} className="mb-2">
-                        <a href="#" onClick={() => handleFileOpen(URL.createObjectURL(selectedFiles[index]))} className="text-blue-500 hover:underline">
+                        <button
+                            onClick={() => handleFileOpen(URL.createObjectURL(selectedFiles[index]))}
+                            className="text-blue-500 hover:underline truncate"
+                        >
                             {file}
-                        </a>
+                        </button>
                     </li>
                 ))}
             </ul>
         </div>
+
     );
 };

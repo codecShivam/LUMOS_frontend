@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import { Message } from "@/types";
 import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
+import { useSubjectContext } from "@/contexts/SubjectContext";
 
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -98,6 +99,8 @@ export default function Home() {
     ]);
   }, []);
 
+  const { selectedSubject } = useSubjectContext();
+
   return (
     <>
       <Head>
@@ -120,6 +123,7 @@ export default function Home() {
         <Navbar />
         <div className="flex-1 overflow-auto sm:px-10 pb-4 sm:pb-10">
           <div className="max-w-[800px] mx-auto mt-4 sm:mt-12">
+            <h1 className="text-2xl font-bold mb-4">{selectedSubject}</h1> {/* Add the heading with the selected subject */}
             <Chat
               messages={messages}
               loading={loading}

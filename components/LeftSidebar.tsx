@@ -2,13 +2,21 @@ import { useState } from "react";
 
 export const LeftSidebar = () => {
     const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+    const [recentFiles, setRecentFiles] = useState<string[]>([]);
 
     const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
         if (files) {
             const fileList = Array.from(files);
             setSelectedFiles(fileList);
+            setRecentFiles(fileList.map(file => file.name));
         }
+    };
+
+    const handleRemoveFile = (file: File) => {
+        const updatedFiles = selectedFiles.filter(f => f !== file);
+        setSelectedFiles(updatedFiles);
+        setRecentFiles(updatedFiles.map(f => f.name));
     };
 
     const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
@@ -21,12 +29,13 @@ export const LeftSidebar = () => {
         if (files) {
             const fileList = Array.from(files);
             setSelectedFiles(fileList);
+            setRecentFiles(fileList.map(file => file.name));
         }
     };
 
-    const handleFileOpen = (file: File) => {
+    const handleFileOpen = (fileUrl: string) => {
         // Open the file using window.open
-        window.open(URL.createObjectURL(file));
+        window.open(fileUrl);
     };
 
     return (
@@ -56,59 +65,57 @@ export const LeftSidebar = () => {
                     <div>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-              className="h-12 w-12 mx-auto mb-4 text-gray-400"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 3a1 1 0 00-1 1v4H5a1 1 0 100 2h4v4a1 1 0 102 0v-4h4a1 1 0 100-2h-4V4a1 1 0 00-1-1z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <p className="text-gray-500">Drag and drop files here</p>
-            <p className="text-gray-500">or</p>
-            <label
-              htmlFor="file-input"
-              className="text-blue-500 hover:underline cursor-pointer"
-            >
-              Select Files
-            </label>
-          </div>
-        ) : (
-          <ul>
-            {selectedFiles.map((file, index) => (
-              <li key={index} className="mb-2">
-                <a
-                  href="#"
-                  className="text-blue-500 hover:underline"
-                  onClick={() => handleFileOpen(file)}
-                >
-                  {file.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      <h2 className="text-lg font-bold mb-4 text-gray-700">Recent Files</h2>
-      <ul>
-        <li className="mb-2">
-          <a href="#" className="text-blue-500 hover:underline">
-            File 1
-          </a>
-        </li>
-        <li className="mb-2">
-          <a href="#" className="text-blue-500 hover:underline">
-            File 2
-          </a>
-        </li>
-        <li className="mb-2">
-          <a href="#" className="text-blue-500 hover:underline">
-            File 3
-          </a>
-        </li>
-      </ul>
-    </div>
-  );
+                            className="h-12 w-12 mx-auto mb-4 text-gray-400"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path
+                                fillRule="evenodd"
+                                d="M10 3a1 1 0 00-1 1v4H5a1 1 0 100 2h4v4a1 1 0 102 0v-4h4a1 1 0 100-2h-4V4a1 1 0 00-1-1z"
+                                clipRule="evenodd"
+                            />
+                        </svg>
+                        <p className="text-gray-500">Drag and drop files here</p>
+                        <p className="text-gray-500">or</p>
+                        <label
+                            htmlFor="file-input"
+                            className="text-blue-500 hover:underline cursor-pointer"
+                        >
+                            Select Files
+                        </label>
+                    </div>
+                ) : (
+                    <ul>
+                        {selectedFiles.map((file, index) => (
+                            <li key={index} className="mb-2">
+                                <a
+                                    href="#"
+                                    className="text-blue-500 hover:underline"
+                                    onClick={() => handleFileOpen(URL.createObjectURL(file))}
+                                >
+                                    {file.name}
+                                </a>
+                                <button
+                                    className="ml-2 text-red-500 hover:underline"
+                                    onClick={() => handleRemoveFile(file)}
+                                >
+                                    Remove
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+            <h2 className="text-lg font-bold mb-4 text-gray-700">Recent Files</h2>
+            <ul>
+                {recentFiles.map((file, index) => (
+                    <li key={index} className="mb-2">
+                        <a href="#" onClick={() => handleFileOpen(URL.createObjectURL(selectedFiles[index]))} className="text-blue-500 hover:underline">
+                            {file}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
 };
